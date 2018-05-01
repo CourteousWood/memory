@@ -5,5 +5,6 @@
 #　用　mlxtend　包下的融合技术　　可以　轻松实现　两次　融合的技巧
 #　　tocsr()  由于ngram　的tfidf　比较耗内存，可以使用这个方法，建立稀疏矩阵，减少内存的消耗．　用法不变
 #　正则汉字：　[\u4e00-\u9fa5]
-
-
+#  随机采样
+            random_choice=np.random.choice(train.shape[0],200,replace=False)
+            train.loc[random_choice[:100]]  ＃定位这些行．
