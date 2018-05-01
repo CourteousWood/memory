@@ -1,0 +1,47 @@
+#　翻译
+#　词云
+#　加权融合
+#　　keras　设置不下降就停止的策越
+#　用　mlxtend　包下的融合技术　　可以　轻松实现　两次　融合的技巧
+#　　tocsr()  由于ngram　的tfidf　比较耗内存，可以使用这个方法，建立稀疏矩阵，减少内存的消耗．　用法不变
+#　正则汉字：　[\u4e00-\u9fa5]
+
+
+
+(一)翻译文档，
+    textblob　里面有翻译的模块．   位于　0.trans.py
+    joblib　　里面有线程并行的方式．　当我们for循环处理数据的时候．可以采用这种方法．
+
+(二)生成词云之python中WordCloud包的用法
+
+(三)平均融合原理：  (豆腐的　trains_ridge_model)
+
+
+    先根据折数取出相对应的数据，
+            fit　         训练数据，　
+            然后预测　　    验证数据．　　看看本折的准确率．　　保留下来准确率Ａ
+            用这个模型预测　　测试数据　　　预测的数据保留下来B
+     所有折数运行完毕，平均准确率，看看　验证集准确率如何．
+
+
+
+    B　四折运算后的　四行数据不同的不同的准确率权重．
+    输出
+
+
+这个他的好的经验为：
+    在他们这个模型中　对于深度学习的流程中：
+        也是采用几折　输入数据．
+                保存文件．设置最少停止的轮数．
+
+
+
+(四)　有相关的　融合方法：
+
+from mlxtend.regressor import StackingRegressor
+model_1 = StackingRegressor(regressors=[rg_1,rg_2, rg_3,lasso_1,lasso_2], meta_regressor=lr,verbose=3)
+(五)　弄成系数矩阵：
+      TfidfVectorizer(ngram_range=(1,8),analyzer='char')
+      之后，  tocsr()  变为稀疏矩阵．
+
+(六)　正则汉字：　[\u4e00-\u9fa5]
